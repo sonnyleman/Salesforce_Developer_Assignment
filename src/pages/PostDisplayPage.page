@@ -1,0 +1,42 @@
+<apex:page controller="PostDisplayController" lightningStylesheets="true" showHeader="true">
+
+    <apex:form >
+
+        <apex:pageBlock id="thePageBlock">
+            <apex:pageMessages id="pmError" />
+        
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton action="{!getDataButton}" value="Get Data" reRender="thePageBlock,pmError" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton action="{!goToBeginningButton}" value="Beginning" reRender="thePageBlock" rendered="{!showPrevious}" />
+                <apex:commandButton action="{!goToPreviousButton}" value="Previous" reRender="thePageBlock" rendered="{!showPrevious}" />
+                <apex:commandButton action="{!goToNextButton}" value="Next" reRender="thePageBlock" rendered="{!showNext}" />
+                <apex:commandButton action="{!goToLastButton}" value="Last Page" reRender="thePageBlock"  rendered="{!showNext}" />
+            </apex:pageBlockButtons>
+
+            <apex:pageBlockSection id="postRecordSection" title="Post Records" columns="1" rendered="{!displayedPostList!=null}">
+                <apex:pageBlockTable value="{!displayedPostList}" var="item">
+                    <apex:column >
+                        <apex:facet name="header">userId </apex:facet>
+                        {!item.userId} 
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">id </apex:facet>
+                        {!item.id} 
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">title</apex:facet>
+                        {!item.title} 
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">body</apex:facet>
+                        {!item.body} 
+                    </apex:column>
+                </apex:pageBlockTable>
+                Page {!pageNumber} / {!totalPages}
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+
+</apex:page>
