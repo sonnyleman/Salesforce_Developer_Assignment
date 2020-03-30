@@ -38,10 +38,6 @@
         <name>Layout</name>
     </types>
     <types>
-        <members>Config__mdt.All_Detail</members>
-        <name>ListView</name>
-    </types>
-    <types>
         <members>Intact_Post</members>
         <name>NamedCredential</name>
     </types>
